@@ -40,23 +40,28 @@ public class PortChat
         _sourcePortPair.Open();
     
 
-        Console.Write("*********************************************************************************");
-        Console.Write("DESTINATION PORT DEFITIONS");
-        Console.Write("*********************************************************************************");
+        Console.WriteLine("********************************************************************************");
+        Console.WriteLine("DESTINATION PORT DEFITIONS");
+        Console.WriteLine("********************************************************************************");
 
         _destinationPort = new SerialPort();
 
         // Allow the user to set the appropriate properties.
         _destinationPort.PortName = SetPortName(_destinationPort.PortName);
-        _destinationPort.BaudRate = SetPortBaudRate(_destinationPort.BaudRate);
-        _destinationPort.Parity = SetPortParity(_destinationPort.Parity);
-        _destinationPort.DataBits = SetPortDataBits(_destinationPort.DataBits);
-        _destinationPort.StopBits = SetPortStopBits(_destinationPort.StopBits);
-        _destinationPort.Handshake = SetPortHandshake(_destinationPort.Handshake);
-        _destinationPort.Open();
+        if (_destinationPort.PortName != "COMX")
+        {
+            _destinationPort.BaudRate = SetPortBaudRate(_destinationPort.BaudRate);
+            _destinationPort.Parity = SetPortParity(_destinationPort.Parity);
+            _destinationPort.DataBits = SetPortDataBits(_destinationPort.DataBits);
+            _destinationPort.StopBits = SetPortStopBits(_destinationPort.StopBits);
+            _destinationPort.Handshake = SetPortHandshake(_destinationPort.Handshake);
+            _destinationPort.Open();
+        }
+        
 
         _continue = true;
-        readThreadDestination.Start();
+        if (_destinationPort.PortName != "COMX")
+            readThreadDestination.Start();
         readThread.Start();
         
 
@@ -104,7 +109,8 @@ public class PortChat
             {
                 string message = string.Format("<{0}> <- {1}", _sourcePortPair.PortName, _sourcePortPair.ReadLine());
                 Console.WriteLine(message);
-                _destinationPort.WriteLine(string.Format(" <{0}> <- {1}",_destinationPort.PortName , message.Replace("Payment", "CCR PIX")));
+                if (_destinationPort.PortName != "COMX")
+                    _destinationPort.WriteLine(string.Format(" <{0}> <- {1}",_destinationPort.PortName , message.Replace("Payment", "CCR PIX")));
             }
             catch (TimeoutException) { }
         }
@@ -122,7 +128,7 @@ public class PortChat
         }
 
         Console.WriteLine("Enter COM port value (Default: {0}): ", defaultPortName);
-        portName = Console.ReadLine();
+        portName = Console.ReadLine().ToUpper();
 
         if (portName == "" )
         {
