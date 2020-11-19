@@ -95,7 +95,9 @@ public class PortChat
             try
             {
                 string message = string.Format("{1}", _destinationPort.PortName, _destinationPort.ReadLine());              
-                Console.WriteLine(message); 
+                Console.WriteLine(message);
+                // Preparing RX  - comment to avoid loop in case of using two pairs of ports.
+                _sourcePortPair.WriteLine(string.Format("{1}", _destinationPort.PortName, message));
             }
             catch (TimeoutException) { }
         }
