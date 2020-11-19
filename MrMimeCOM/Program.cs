@@ -110,7 +110,7 @@ public class PortChat
                 string message = string.Format("<{0}> <- {1}", _sourcePortPair.PortName, _sourcePortPair.ReadLine());
                 Console.WriteLine(message);
                 if (_destinationPort.PortName != "COMX")
-                    _destinationPort.WriteLine(string.Format(" <{0}> <- {1}",_destinationPort.PortName , message.Replace("Payment", "CCR PIX")));
+                    _destinationPort.WriteLine(string.Format(" <{0}> <- {1}",_destinationPort.PortName , message.Replace("Cartao credito", "PIX")));
             }
             catch (TimeoutException) { }
         }
