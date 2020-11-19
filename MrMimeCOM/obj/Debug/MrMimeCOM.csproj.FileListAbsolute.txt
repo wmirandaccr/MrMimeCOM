@@ -1,0 +1,6 @@
+C:\Projects\source\repos\MrMimeCOM\MrMimeCOM\bin\Debug\MrMimeCOM.exe
+C:\Projects\source\repos\MrMimeCOM\MrMimeCOM\bin\Debug\MrMimeCOM.pdb
+C:\Projects\source\repos\MrMimeCOM\MrMimeCOM\obj\Debug\MrMimeCOM.csprojAssemblyReference.cache
+C:\Projects\source\repos\MrMimeCOM\MrMimeCOM\obj\Debug\MrMimeCOM.csproj.CoreCompileInputs.cache
+C:\Projects\source\repos\MrMimeCOM\MrMimeCOM\obj\Debug\MrMimeCOM.exe
+C:\Projects\source\repos\MrMimeCOM\MrMimeCOM\obj\Debug\MrMimeCOM.pdb
