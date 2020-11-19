@@ -80,7 +80,7 @@ public class PortChat
             else
             {
                 _sourcePortPair.WriteLine(
-                    String.Format("<{0}>: {1}", _sourcePortPair.PortName, message));
+                    String.Format("{1}", _sourcePortPair.PortName, message));
             }
         }
 
@@ -94,7 +94,7 @@ public class PortChat
         {
             try
             {
-                string message = string.Format("<{0}> <- {1}", _destinationPort.PortName, _destinationPort.ReadLine());              
+                string message = string.Format("{1}", _destinationPort.PortName, _destinationPort.ReadLine());              
                 Console.WriteLine(message); 
             }
             catch (TimeoutException) { }
@@ -107,10 +107,10 @@ public class PortChat
         {
             try
             {
-                string message = string.Format("<{0}> <- {1}", _sourcePortPair.PortName, _sourcePortPair.ReadLine());
+                string message = string.Format("{1}", _sourcePortPair.PortName, _sourcePortPair.ReadLine());
                 Console.WriteLine(message);
                 if (_destinationPort.PortName != "COMX")
-                    _destinationPort.WriteLine(string.Format(" <{0}> <- {1}",_destinationPort.PortName , message.Replace("Cartao credito", "PIX")));
+                    _destinationPort.WriteLine(string.Format("{1}",_destinationPort.PortName , message.Replace("Cartao credito", "PIX")));
             }
             catch (TimeoutException) { }
         }
